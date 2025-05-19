@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Seconds Stopwatch</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      text-align: center;
+      margin-top: 100px;
+      background: #2A7B9B;
+background: linear-gradient(90deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+    }
+
+    .stopwatch {
+      font-size: 60px;
+      margin-bottom: 20px;
+      color: #222;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .start { background-color: #4CAF50; color: white; }
+    .stop { background-color: #451ed3; color: white; }
+    .reset { background-color: #008CBA; color: white; }
+  </style>
+</head>
+<body>
+
+  <div class="stopwatch" id="display">0</div>
+  <button class="start" onclick="startTimer()">Start</button>
+  <button class="stop" onclick="stopTimer()">Stop</button>
+  <button class="reset" onclick="resetTimer()">Reset</button>
+
+  <script>
+    let timer;
+    let seconds = 0;
+    let running = false;
+
+    function updateDisplay() {
+      document.getElementById("display").textContent = seconds;
+    }
+
+    function startTimer() {
+      if (!running) {
+        running = true;
+        timer = setInterval(() => {
+          seconds++;
+          updateDisplay();
+        }, 1000);
+      }
+    }
+
+    function stopTimer() {
+      running = false;
+      clearInterval(timer);
+    }
+
+    function resetTimer() {
+      stopTimer();
+      seconds = 0;
+      updateDisplay();
+    }
+  </script>
+
+</body>
+</html>
